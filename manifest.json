@@ -10,8 +10,8 @@
 
   "permissions": ["tabs"],
   "background": {
-    "scripts": ["scripts/background.js"]
-  },
+    "scripts": ["scripts/background.js"],
+    "type": "module"
+  }
   
-  "web_accessible_resources": ["assets/*"]
 }

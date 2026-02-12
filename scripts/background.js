@@ -1,3 +1,5 @@
+import { getRandomPrank } from "./engine.js";
+
 const filter = {
   properties: ["url"],
 };
@@ -8,7 +10,9 @@ browser.tabs.onUpdated.addListener(
 )
 
 function updateTabTo404() {
+  const newErrorUrl = getRandomPrank();
+  
     browser.tabs.update(
-        {url: '../assets/404_trial.html'}
+        {url: newErrorUrl}
     );
 }
