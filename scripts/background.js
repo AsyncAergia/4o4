@@ -9,6 +9,6 @@ browser.tabs.onUpdated.addListener(
 
 function updateTabTo404() {
     browser.tabs.update(
-        {url: '/assets/404_trial.html'}
+        {url: '../assets/404_trial.html'}
     );
 }
