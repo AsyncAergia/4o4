@@ -1,18 +1,11 @@
-import { getRandomPrank } from "./engine.js";
+import { shouldPrank } from "./engine.js";
 
 const filter = {
-  properties: ["url"],
+  properties: ["pinned"],
 };
 
 browser.tabs.onUpdated.addListener(
-  updateTabTo404,
+  shouldPrank,
   filter
 )
 
-function updateTabTo404() {
-  const newErrorUrl = getRandomPrank();
-  
-    browser.tabs.update(
-        {url: newErrorUrl}
-    );
-}
