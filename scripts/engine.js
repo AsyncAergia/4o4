@@ -1,5 +1,10 @@
-import { errorPagesArray } from "./constants.js";
-import { prankPercentage } from "./constants.js";
+import { errorPagesArray, prankPercentage } from "./constants.js";
+
+export function startPrank(tabId, changeInfo, tabInfo) {
+    if(!isUrlChange(changeInfo))    return;
+    if(!shouldPrank)    return;
+    updateTabTo404();
+}
 
 function getRandomPrank() {
     const max = errorPagesArray.length-1;
@@ -11,9 +16,14 @@ function getRandomPrank() {
     return randomErrorPage;
 }
 
-export function shouldPrank() {
+function isUrlChange(changeInfo) {
+    if(changeInfo.pinned !== undefined) return true;
+    else return false;
+}
+
+function shouldPrank() {
     const shouldPrank = (Math.random() * 100) < prankPercentage;
-    if(shouldPrank) updateTabTo404();
+    return shouldPrank;
 }   
 
 function updateTabTo404() {
