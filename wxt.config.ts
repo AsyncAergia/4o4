@@ -11,6 +11,7 @@ export default defineConfig({
                 resources: ["/assets/*"],
                 matches: ["<all_urls>"]
             }
-        ]
+        ],
+        permissions: ['tabs'],
   }
 });
