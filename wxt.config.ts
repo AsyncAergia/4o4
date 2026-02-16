@@ -6,12 +6,7 @@ export default defineConfig({
     modulesDir: "wxt-modules",
     outDir: "dist",
     manifest: {
-        web_accessible_resources: [
-            {
-                resources: ["/assets/*"],
-                matches: ["<all_urls>"]
-            }
-        ],
-        permissions: ['tabs'],
+        
+    permissions: ['tabs'],
   }
 });
