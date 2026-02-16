@@ -1,8 +1,11 @@
-import { errorPagesArray, prankPercentage } from "./constants.js";
+import {errorPagesArray, prankPercentage} from './constants'
 
-export function startPrank(tabId, changeInfo, tabInfo) {
+export function startPrank(
+     _tabId: number,
+    changeInfo: Browser.tabs.OnUpdatedInfo 
+) {
     if(!isUrlChange(changeInfo))    return;
-    if(!shouldPrank)    return;
+    if(!shouldPrank())    return;
     updateTabTo404();
 }
 
@@ -12,12 +15,12 @@ function getRandomPrank() {
 
     const randomIndex = Math.floor(Math.random() * (max - min + 1)) + min;
     const randomErrorPage = errorPagesArray[randomIndex];
-
-    return randomErrorPage;
+    const url = browser.runtime.getURL(randomErrorPage);
+    return url;
 }
 
-function isUrlChange(changeInfo) {
-    if(changeInfo.pinned !== undefined) return true;
+function isUrlChange(changeInfo: Browser.tabs.OnUpdatedInfo ) {
+    if(changeInfo?.pinned) return true;
     else return false;
 }
 
@@ -27,8 +30,8 @@ function shouldPrank() {
 }   
 
 function updateTabTo404() {
-  const newErrorUrl = getRandomPrank();
-  
+    const newErrorUrl = getRandomPrank();
+    
     browser.tabs.update(
         {url: newErrorUrl}
     );
