@@ -20,7 +20,7 @@ function getRandomPrank() {
 }
 
 function isUrlChange(changeInfo: Browser.tabs.OnUpdatedInfo ) {
-    if(changeInfo?.pinned) return true;
+    if(changeInfo?.url) return true;
     else return false;
 }
 
