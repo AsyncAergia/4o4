@@ -1,4 +1,4 @@
 export const prankPercentage = 9;
 export const errorPagesArray = [
-    '/assets/404_trial/index.html'
+    '/4o4-pages/4o4-trial/index.html'
 ] as const;
