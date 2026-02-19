@@ -1,17 +1,24 @@
 # 4o4
 
-A prank browser extension that randomly hijacks your navigation. On every page change, there’s a 9% chance your destination gets swapped with one of the custom 4o4 pages included in this project. Inspired by Cenafy.
+4o4 is a browser extension that introduces a bit of creative chaos to the web. Every time you click a link, there is a small chance (default 9%) that you'll be redirected to a custom-designed "error" page instead of your destination.
 
-This project also serves as a public repository for people to submit their own creative versions of 404 pages.
+While it works as a prank, the heart of this project is a community-driven gallery. It serves as a sandbox for developers to practice new frontend techniques—whether that’s a complex CSS animation, a Three.js scene, or a mini-app built in a new framework—and see it live in a real-world browsing context.
 
 ## Table of Contents
 
+* [Why 4o4?](#why-4o4)
 * [Installation](#installation)
 * [Building from Source](#building-from-source)
 * [Roadmap](#roadmap)
-* [CI/CD Automation](#cicd-automation)
 * [Contributing](#contributing)
 * [Credits](#credits)
+
+## Why 4o4?
+
+Most of us learn new tech by building small, random pages that eventually just sit in a folder on our desktop. This repo is a place for those experiments to live.
+
+* **For Users:** A fun, unpredictable browsing experience inspired by projects like Cenafy.
+* **For Developers:** A low-stakes environment to test out a new library, practice a layout, or experiment with frontend algorithms. If it fits the "error" or "missing" theme, it belongs here.
 
 ## Installation
 
@@ -21,7 +28,7 @@ You can install 4o4 in several ways:
 You can download 4o4 directly from the Chrome Web Store or Firefox Add-ons (links coming soon).
 
 **2. GitHub Releases**
-You can go to the Releases tab on this repository, download the version for your preferred browser, and manually load it in your browser's developer extensions page.
+Download the latest version from the [GitHub Releases](https://github.com/AsyncAergia/4o4/releases) page and load it into your browser via the developer extensions menu.
 
 ## Building from Source
 
@@ -50,22 +57,22 @@ npm run build:firefox
 
 Here is what is currently planned for future updates:
 
-- [ ] **Extension Popup:** Add a user interface so you can control the extension.
-- [ ] **Adjustable Probability:** Let users choose their own prank percentage instead of the default 9%.
-- [ ] **Page Toggles:** Allow users to blacklist or whitelist specific 404 pages from the rotation.
-- [ ] **Preview Mode:** Add a way to try out and view each 404 page directly from the popup.
-- [ ] **Store Automations:** Set up CI/CD to automatically publish new updates to the respective browser extension stores.
+- [ ] **Customization Popup:** Let users set their own prank probability and toggle specific 404 pages on/off.
+- [ ] **Page Preview:** A way to view the gallery of 404 pages directly from the extension.
+- [ ] **CI/CD Improvements:** Fully automate the publishing process to the web stores on every release.
 
 ## Contributing
 
-Everyone is welcome to contribute. Whether you want to add your own creative 404 page designs, suggest new features, or report bugs, your help is appreciated.
+We love seeing new creative pages. You don’t need to be an expert—this repo is specifically meant for practicing.
 
-Please check the `CONTRIBUTING.md` file for more details on how to get started.
+* Have a cool animation you just finished?
+* Built a "Page Not Found" screen in a new framework?
+* Found a bug in the extension logic?
 
-## CI/CD Automation
-
-The repository is set up with automated workflows. Whenever a new version tag is pushed to the main branch, a GitHub Action is triggered to automatically build and publish a new release on the GitHub Releases page.
+Check out **[CONTRIBUTING.md](CONTRIBUTING.md)** for the technical requirements on how to add your own pages and register them in the project.
 
 ## Credits
 
-Extension icons are provided by Iconscout.
+* **Icons:** Sourced from Iconscout.
+* **Inspiration:** Inspired by the chaotic energy of Cenafy.
+* **Contributors:** Everyone who has added a creative error page to the gallery.
