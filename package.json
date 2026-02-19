@@ -12,7 +12,9 @@
     "zip": "wxt zip",
     "zip:firefox": "wxt zip --mv3 -b firefox",
     "compile": "tsc --noEmit",
-    "postinstall": "wxt prepare"
+    "postinstall": "wxt prepare",
+
+    "vercel-build": "node build-index.js"
   },
   "devDependencies": {
     "typescript": "^5.9.3",
