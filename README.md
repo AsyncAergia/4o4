@@ -4,6 +4,8 @@
 
 While it works as a prank, the heart of this project is a community-driven gallery. It serves as a sandbox for developers to practice new frontend techniques—whether that’s a complex CSS animation, a Three.js scene, or a mini-app built in a new framework—and see it live in a real-world browsing context.
 
+**[View the Live Gallery of 404 Pages](https://4o4-swart.vercel.app/)**
+
 ## Table of Contents
 
 * [Why 4o4?](#why-4o4)
