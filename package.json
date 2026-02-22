@@ -2,7 +2,7 @@
   "name": "4o4",
   "description": "A prank-focused extension that occasionally swaps your destination for a custom 404 experience.",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "scripts": {
     "dev": "wxt",
