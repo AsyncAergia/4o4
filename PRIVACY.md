@@ -1,0 +1,1 @@
+4o4 operates entirely locally on your device. It does not collect, store, or transmit any personal data, browsing history, or analytics.
