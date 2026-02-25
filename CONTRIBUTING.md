@@ -2,8 +2,8 @@
 
 Welcome to **4o4**! This project is two things:
 
-1. A **prank extension** that keeps the internet unpredictable.
-2. A **developer playground** where you can experiment with new frameworks, libraries, or creative coding ideas by building custom "Error" pages.
+1. A prank extension that keeps the internet unpredictable.
+2. A developer playground where you can experiment with new frameworks, libraries, or creative coding ideas by building custom "Error" pages.
 
 Whether you are here to fix a bug in the extension core or show off your skills with a React/Three.js 404 page, we’d love your help.
 
@@ -11,14 +11,12 @@ Whether you are here to fix a bug in the extension core or show off your skills 
 
 1. [Branching Strategy](#1-branching-strategy)
 2. [Pull Request Process](#2-pull-request-process)
-3. [The "Golden Rule" for Pages](#3-the-golden-rule-for-pages)
-4. [How to Add a New 404 Page](#4-how-to-add-a-new-404-page)
-   - [Tech Stack & Frameworks](#tech-stack--frameworks)
-   - [Folder Structure](#folder-structure)
-   - [Registration](#registration)
-
-5. [Security & Performance](#5-security--performance)
-6. [Submission Checklist](#6-submission-checklist)
+3. [How to Add a New 404 Page](#3-how-to-add-a-new-404-page)
+   - [The Golden Rule (Theme)](#31-the-golden-rule-theme)
+   - [Architecture & Workflow](#32-architecture--workflow)
+   - [Registration](#33-registration)
+4. [Security & Performance](#4-security--performance)
+5. [Submission Checklist](#5-submission-checklist)
 
 ---
 
@@ -33,6 +31,7 @@ We use specific branch prefixes to keep the repo organized. Please name your bra
 | **Bug Fix** | `fix/[bug-name]` | `fix/link-interceptor` |
 | **Maintenance** | `chore/[task-name]` | `chore/update-wxt` |
 | **Docs** | `docs/[topic]` | `docs/contributing-guide` |
+
 ---
 
 ## 2. Pull Request Process
@@ -43,58 +42,36 @@ We use specific branch prefixes to keep the repo organized. Please name your bra
 4. Open a Pull Request against `main`.
 5. Fill out the Submission Checklist.
 
-## 3. The "Golden Rule" for Pages
-
-**All 404 page submissions must be themed around an "Error" concept.**
-
-This is the only creative constraint. Your page should visually or thematically resemble a "Page Not Found," "System Crash," "Lost," or "Glitch" state.
-
-- Encouraged: A "404 Not Found" page that is actually a playable game, a terminal simulation, or a beautiful 3D animation.
-- Discouraged: A random page that just plays a video or displays text with no connection to the "Error" theme.
-
-Use this as an opportunity to learn! Want to try building a 404 page in Svelte? Go for it. Want to try raw WebGL? Do it here.
-
 ---
 
-## 4. How to Add a New 404 Page
+## 3. How to Add a New 404 Page
 
-All 404 pages must be submitted as **static assets** inside the `public/` directory.
+### 3.1 The Golden Rule (Theme)
+All 404 page submissions must be themed around an **"Error" concept.**
+Your page should visually or thematically resemble a "Page Not Found," "System Crash," "Lost," or "Glitch" state.
+- Encouraged: A playable 404 game, a terminal simulation, or a 3D glitch animation.
+- Discouraged: Random pages (e.g., a simple cat video) with no connection to the "Error" theme.
 
-We use WXT, which copies the `public/` folder directly into the final extension build. Because of this, your page cannot rely on a runtime build process.
+
+### 3.2 Architecture & Workflow
+You may use any framework (React, Vue, Three.js, etc.) as long as it compiles to static files. To keep the extension lightweight while keeping the source open, we use a dual-folder system:
+
+1. **The Source Folder:** Create a folder in `4o4-pages-source/` for your raw code (JSX, TS, etc.). Run `npm init` here to manage dependencies. Do **not** commit `node_modules`.
+2. **The Public Folder:** Build your project locally and copy only the final static output (HTML/CSS/JS) into `extension/public/4o4-pages/`. Your entry file must be named `index.html`.
+
+**Required Directory Structure:**
+```plaintext
+├── 4o4-pages-source/
+│   └── 4o4-neon-glitch/ (Source code, package.json, etc.)
+└── extension/public/4o4-pages/
+    └── 4o4-neon-glitch/ (Bundled index.html, assets only)
+
+```
 
 
-### Tech Stack & Frameworks
+### 3.3 Registration
 
-You are free to use any technology (React, Vue, Three.js, vanilla JS, etc.) to build your page.
-
-**Crucial Rule:** If you use a framework that requires a build step (like React or TypeScript):
-
-1. Build your project locally.
-2. **Only submit the output** (the static HTML/CSS/JS files).
-3. Do **not** upload your `node_modules`, `package.json`, or uncompiled `.jsx/.vue` source files to the public folder.
-
-### Folder Structure
-
-1. Navigate to `public/4o4-pages/`.
-2. Create a new folder. **It must start with `4o4-` and use kebab-case.**
-3. Your entry file must be named `index.html`.
-
-**Correct Example:**
-
-- Folder: `public/4o4-pages/4o4-neon-glitch/`
-- Files: `index.html`, `style.css`, `app.js`
-
-**Incorrect Example:**
-
-- `public/4o4-pages/my-react-page/` (Missing prefix)
-- `public/4o4-pages/4o4_Page/` (Use kebab-case)
-
-### Registration
-
-Once your files are in place, you must tell the extension that your page exists.
-
-1. Open `src/utils/constants.ts`.
-2. Add your page's path to the `errorPagesArray` list.
+Once your files are in place, register the page by adding its path to the `errorPagesArray` in `extension/src/utils/constants.ts`:
 
 ```typescript
 export const errorPagesArray = [
@@ -106,43 +83,29 @@ export const errorPagesArray = [
 
 ---
 
-## 5. Security & Performance
-
+## 4. Security & Performance
 Since this extension runs in users' browsers, strict security and quality standards apply.
 
-### 5.1 Security Requirements
+### 4.1 Security Requirements
 
-- Self-Contained:
-  Your page cannot rely on the internet. You cannot load fonts from Google Fonts or scripts from a CDN.
-  **All assets (images, scripts, CSS) must be local files inside your folder.**
+- **Self-Contained:** Your page cannot rely on the internet. You cannot load fonts from Google Fonts or scripts from a CDN. All assets (images, scripts, CSS) must be local files inside your folder.
+- **No `eval()`:** Never use `eval()` or any dangerous JavaScript execution methods.
 
-- No `eval()`:
-  Never use `eval()` or any dangerous JavaScript execution methods.
+### 4.2 Performance Requirements
 
----
+- **Optimize assets:** Compress images, minify CSS/JS, and remove unused code.
+- **Avoid infinite loops:** Do not include logic that could freeze or crash the browser.
+- **Heavy libraries:** If you use a large library (e.g., Three.js), you **must** use the minified production version.
 
-### 5.2 Performance Requirements
+### 4.3 Content Policy
+We want to keep this project fun and inclusive. Please ensure no submissions contain:
 
-- Optimize assets:
-  Compress images, minify CSS/JS, and remove unused code.
-
-- Avoid infinite loops:
-  Do not include logic that could freeze or crash the browser.
-
-- Heavy libraries:
-  If you use a large library (e.g., Three.js), you must use the minified production version.
+- Hate speech or targeted harassment.
+- Political messaging or sensitive real-world propaganda.
 
 ---
 
-### 5.3 Content Policy
-
-- No hate speech
-- No political messaging
-- No targeted harassment
-
----
-
-## 6. Submission Checklist
+## 5. Submission Checklist
 
 Please copy/paste the relevant section into your Pull Request description.
 
@@ -154,8 +117,9 @@ Please copy/paste the relevant section into your Pull Request description.
 ### Specific: New 404 Page
 
 * [ ] Naming: My folder starts with `4o4-` and uses kebab-case (e.g., `4o4-retro-terminal`).
-* [ ] Structure: My entry file is `index.html` and resides in `public/4o4-pages/[my-folder]/`.
-* [ ] Static Only: I have only uploaded static files (HTML/CSS/JS/Images). I did not upload source code like `.jsx` or `node_modules`.
+* [ ] Dual-Folder Structure: Raw source is in `4o4-pages-source/` and bundled files are in `extension/public/4o4-pages/`.
+* [ ] No Node Modules: I have not committed any `node_modules` folders.
+* [ ] Static Only: I ensured the `extension/public/` folder contains only compiled assets (HTML/CSS/JS) and no raw source files (JSX, TS, SASS).
 * [ ] Self-Contained: All assets are local (no CDNs) and I used relative paths (e.g., `./script.js`).
-* [ ] Registration: I added my path to `src/utils/constants.ts`.
+* [ ] Registration: I added my path to `extension/src/utils/constants.ts`.
 * [ ] Theme: My page follows the "Error/404" theme.
